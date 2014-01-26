@@ -1,12 +1,9 @@
 require_relative '../test_helper'
-require_relative '../../models/server'
+require_relative '../../models/gameserver'
 
-
-# require 'minitest/autorun'
-
-describe Server do
+describe Gameserver do
   before do
-    @server = Server.new
+    @server = Gameserver.new
   end
 
   describe "checking if server is alive" do

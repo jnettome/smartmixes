@@ -22,10 +22,14 @@ class Smartmixes < Sinatra::Base
 
   # Routes
   get '/' do
-    server_ip = IPAddr.new('200.98.169.211')
-    server = GoldSrcServer.new(server_ip, 27028)
-    server.init
-    puts server.inspect
+    # server_ip = IPAddr.new('200.98.169.211')
+    # server = GoldSrcServer.new(server_ip, 27028)
+    # server.init
+    # puts server.inspect
     erb :index
+  end
+
+  get '/sobre' do
+    erb :about
   end
 end
