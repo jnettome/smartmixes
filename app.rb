@@ -30,7 +30,7 @@ class Smartmixes < Sinatra::Base
 
   # Routes
   get '/' do
-    @servers = Gameserver.all.order('last_ping_at DESC')
+    @servers = Gameserver.all.order('players ASC').order('last_ping_at DESC')
     erb :index
   end
 
@@ -69,6 +69,11 @@ class Smartmixes < Sinatra::Base
       server_ip = IPAddr.new(current_server.ip)
       server = GoldSrcServer.new(server_ip, current_server.port)
       server.init
+
+      if server.server_info[:number_of_players] == 0
+        current_server.destroy!
+        redirect '/'
+      end
 
       current_server.hostname = server.server_info[:server_name]
       current_server.players = server.server_info[:number_of_players].to_s + '/' + server.server_info[:max_players].to_s

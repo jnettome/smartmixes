@@ -8,7 +8,7 @@
     <style>
       /* No content under the fixed bootstrap header. */
       body {
-        padding-top: 60px;
+        padding-top: 40px;
       }
     </style>
     <link href="stylesheets/bootstrap.css" media="screen" rel="stylesheet" type="text/css" />
@@ -17,6 +17,15 @@
     <link href="stylesheets/fontawesome.css" media="screen" rel="stylesheet" type="text/css" />
     <link href="stylesheets/project.css" media="screen" rel="stylesheet" type="text/css" />
     <link href="stylesheets/index.css" media="screen" rel="stylesheet" type="text/css" />
+
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script>
+    $(function() {
+      $('.add_server_button').click(function() {
+        $('.add_server').slideDown();
+      })
+    });
+    </script>
 
     <title>SMARTMIXES</title>
   </head>
@@ -35,8 +44,13 @@
         </ul>
       </div>
     </div>
+
     <div class="container">
-      <fieldset>
+      <a href="/refresh" class="btn btn-primary">Atualizar listagem</a>
+      <a href="javascript:;" class="btn btn-default add_server_button">Adicionar um servidor</a>
+      <br><br>
+
+      <fieldset class="add_server">
         <legend>Adicionar servidor</legend>
 
         <form class="form-inline" role="form" action="/registrar" method="post">
@@ -46,10 +60,6 @@
           <button type="submit" class="btn btn-default">Adicionar</button>
         </form>
       </fieldset>
-
-      <hr>
-
-      <a href="/refresh" class="btn btn-primary">Atualizar Servidores</a>
 
       <table class="table">
         <thead>
