@@ -1,12 +1,7 @@
-class Gameserver
-  def initialize(ip)
-  end
+class Gameserver < ActiveRecord::Base
+  # validates_presence_of :name
 
   def alive?
     true
-  end
-
-  def self.all
-    []
   end
 end

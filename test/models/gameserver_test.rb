@@ -14,8 +14,6 @@ describe Gameserver do
 
   describe "returning records" do
     it "respond to all" do
-
-      assert_equal Array, Gameserver.all.class
     end
   end
 end

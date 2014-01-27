@@ -1,8 +1,14 @@
 source "https://rubygems.org"
 
+gem 'rake'
+
 gem 'sinatra'
 gem 'unicorn'
 gem 'steam-condenser'
+
+gem 'activerecord'
+gem 'sinatra-activerecord'
+gem 'pg'
 
 group :development do
   gem 'awesome_print'
@@ -13,4 +19,3 @@ end
 group :test do
   gem 'rack-test'
 end
-

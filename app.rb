@@ -2,9 +2,12 @@ require 'rubygems'
 require 'bundler/setup'
 Bundler.require(:default)
 
+require_relative 'config/environments'
 require_relative 'models/gameserver'
 
 class Smartmixes < Sinatra::Base
+  register Sinatra::ActiveRecordExtension
+
   enable :method_override
 
   configure do
@@ -26,6 +29,8 @@ class Smartmixes < Sinatra::Base
     # server = GoldSrcServer.new(server_ip, 27028)
     # server.init
     # puts server.inspect
+    @servers = Gameserver.all
+
     erb :index
   end
 
