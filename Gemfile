@@ -18,4 +18,5 @@ end
 
 group :test do
   gem 'rack-test'
+  gem 'sqlite3'
 end

@@ -3,7 +3,7 @@ require_relative '../../models/gameserver'
 
 describe Gameserver do
   before do
-    @server = Gameserver.new(ip: '127.0.0.1')
+    @server = Gameserver.new
   end
 
   describe "checking if server is alive" do

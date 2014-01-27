@@ -30,7 +30,6 @@ class Smartmixes < Sinatra::Base
     # server.init
     # puts server.inspect
     @servers = Gameserver.all
-
     erb :index
   end
 
