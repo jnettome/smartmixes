@@ -10,6 +10,8 @@ gem 'activerecord'
 gem 'sinatra-activerecord'
 gem 'pg'
 
+gem 'rack-flash3'
+
 group :development do
   gem 'awesome_print'
   gem 'foreman'

@@ -31,6 +31,8 @@ GEM
     multi_xml (0.5.5)
     pg (0.17.1)
     rack (1.5.2)
+    rack-flash3 (1.0.5)
+      rack
     rack-protection (1.5.2)
       rack
     rack-test (0.6.2)
@@ -68,6 +70,7 @@ DEPENDENCIES
   awesome_print
   foreman
   pg
+  rack-flash3
   rack-test
   rake
   shotgun
