@@ -36,8 +36,12 @@ class Smartmixes < Sinatra::Base
 
   post '/registrar' do
     server_ip = IPAddr.new(params[:ip])
+
+    # begin
     server = GoldSrcServer.new(server_ip, params[:port])
     server.init
+    # rescue # Errno::ECONNREFUSED
+    # end
 
     if @server = Gameserver.find_by_ip_and_port(params[:ip], params[:port])
       # 'IP já cadastrado ou inválido'
@@ -55,6 +59,22 @@ class Smartmixes < Sinatra::Base
         players: server.server_info[:number_of_players].to_s + '/' + server.server_info[:max_players].to_s,
         current_map: server.server_info[:map_name],
         last_ping_at: Date.today)
+    end
+
+    redirect '/'
+  end
+
+  get '/refresh' do
+    Gameserver.find(:all, :conditions => ["last_ping_at < ?", 30.seconds.ago]).each do |current_server|
+      server_ip = IPAddr.new(current_server.ip)
+      server = GoldSrcServer.new(server_ip, current_server.port)
+      server.init
+
+      current_server.hostname = server.server_info[:server_name]
+      current_server.players = server.server_info[:number_of_players].to_s + '/' + server.server_info[:max_players].to_s
+      current_server.current_map = server.server_info[:map_name]
+      current_server.last_ping_at = Date.today
+      current_server.save!
     end
 
     redirect '/'
